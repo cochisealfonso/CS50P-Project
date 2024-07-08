@@ -23,10 +23,8 @@ def main():
     bullet_image = pygame.image.load("icons\\bullet.png")
 
     # Initialize player
-    """TO DO: Make the player choose player type"""
     player = Player(playerType=1, screen=screen)
-
-    """TO DO: Setup enemies"""
+    
     enemy = Enemy(enemyType=1, screen=screen)
     enemy2 = Enemy(enemyType=1, screen=screen)
 
