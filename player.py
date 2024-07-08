@@ -1,4 +1,5 @@
 import pygame
+from bullet import Bullet
 
 class Player:
     def __init__(self, playerType, screen, XPos=30, YPos=300):
@@ -31,3 +32,6 @@ class Player:
                 self.XPos += 300 * dt
             else:
                 self.XPos -= 350 * dt
+
+    def load_gun(self, bullet_image):
+        return Bullet(bullet=bullet_image, screen=self.screen, XPos=self.XPos + 45, YPos=self.YPos + 35)
