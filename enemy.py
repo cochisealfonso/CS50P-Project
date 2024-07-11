@@ -9,7 +9,9 @@ class Enemy:
         self.YPos = random.randint(30,570)
 
     # Directional controls for the player
-    def spawn(self, dt, do):
-        if do == "Y":
+    def spawn(self, dt, bool):
+        if bool:
             self.screen.blit(self.playertype, (self.XPos, self.YPos))
             self.XPos -= 100 * dt
+            if self.XPos < 150:
+                self.XPos = 800 
