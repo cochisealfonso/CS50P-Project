@@ -12,7 +12,8 @@ class Bullet:
         if shoot:
             if self.XPos >= 750:
                 self.screen.blit(self.bullet_image, (self.XPos, self.YPos))
-                self.XPos = 850
+                self.XPos = 900
+                self.YPos = 700
                 return False
             else:
                 self.screen.blit(self.bullet_image, (self.XPos, self.YPos))
