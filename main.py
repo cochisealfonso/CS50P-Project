@@ -1,4 +1,6 @@
 import pygame
+import math
+import random
 from player import Player
 from enemy import Enemy
 from bullet import Bullet
@@ -16,6 +18,7 @@ TO DO:
 def main():
     # Initialize Pygame and display
     pygame.init()
+    pygame.font.init()
 
     # Initialize window size, caption, icon, background
     screen, background = set_window(800,600)
@@ -29,6 +32,7 @@ def main():
     enemy = Enemy(enemyType=1, screen=screen)
     enemy2 = Enemy(enemyType=2, screen=screen)
     enemy3 = Enemy(enemyType=3, screen=screen)
+    enemy4 = Enemy(enemyType=4, screen=screen)
 
     # Variables
     clock = pygame.time.Clock()
@@ -36,13 +40,19 @@ def main():
     dt = 0
     time_dt = 0
     shoot = False
-    
+    hit = False
+    hit2 = False
+    hit3 = False
+    hit4 = False
+    score = 0
+    font = pygame.font.Font('RangerEastwood.ttf',32)
+
     while running:
         for event in pygame.event.get():
             # Window closes if the user clicks X
             if event.type == pygame.QUIT:
                 running = False
-        
+
         # Display player on screen
         screen.fill((255,204,153))
         screen.blit(background, (0,0))
@@ -62,19 +72,66 @@ def main():
         enemy.spawn(dt,time_dt >= 1)
         enemy2.spawn(dt,time_dt >= 2)
         enemy3.spawn(dt,time_dt >= 3)
+        enemy4.spawn(dt,time_dt >= 4)
 
-        # print(time_dt)
+
+        # Bullet-Enemy collision
+        hit = collision(enemy.XPos, enemy.YPos, bullet.XPos, bullet.YPos)
+        hit2 = collision(enemy2.XPos, enemy2.YPos, bullet.XPos, bullet.YPos)
+        hit3 = collision(enemy3.XPos, enemy3.YPos, bullet.XPos, bullet.YPos)
+        hit4 = collision(enemy4.XPos, enemy4.YPos, bullet.XPos, bullet.YPos)
+
+        if hit:
+            enemy.XPos = 800
+            enemy.YPos = random.randint(30,570)
+            shoot = False
+            bullet.XPos = 0
+            score += 1
+        if hit2:
+            enemy2.XPos = 800
+            enemy2.YPos = random.randint(30,570)
+            score += 1
+            shoot = False
+            bullet.XPos = 0
+        if hit3:
+            enemy3.XPos = 800
+            enemy3.YPos = random.randint(30,570)
+            shoot = False
+            bullet.XPos = 0
+            score += 1
+        if hit4:
+            enemy4.XPos = 800
+            enemy4.YPos = random.randint(30,570)
+            shoot = False
+            bullet.XPos = 0
+            score += 1
+
+        show_score(font, score, screen)
         pygame.display.flip()
-        dt = clock.tick(120) / 1000
+        dt = clock.tick(60) / 1000
         time_dt += dt
         
     pygame.quit()
+
 
 def set_window(w, h):
     pygame.display.set_caption("The Last Cowboy")
     pygame.display.set_icon(pygame.image.load("icons\cowboy_icon.png"))
     background = pygame.image.load("icons\cowboy_bg.jpg")
     return pygame.display.set_mode((w, h)), background
+
+
+def collision(x1, y1, x2, y2):
+    distance = math.sqrt(math.pow(x2-x1, 2) + math.pow(y2-y1, 2))
+    if distance <= 20:
+        return True
+    else:
+        return False
+
+def show_score(font, score, screen):
+    display_score =  font.render("Score: " + str(score), True, (255,255,255))
+    screen.blit(display_score, (10,10))
+    
 
 if __name__ == "__main__":
     main()
