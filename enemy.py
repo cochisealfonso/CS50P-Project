@@ -15,3 +15,4 @@ class Enemy:
             self.XPos -= 100 * dt
             if self.XPos < 150:
                 self.XPos = 800 
+                self.YPos = random.randint(30, 570)
