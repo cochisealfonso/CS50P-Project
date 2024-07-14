@@ -8,8 +8,7 @@ from bullet import Bullet
 """
 TO DO:
     
-    x Fix enemy spawn functionality
-    x Make player choose player type
+    x Tidy up start and end game code
     x Tidy up variables
     x ETC
 
@@ -23,6 +22,8 @@ def main():
     # Initialize window size, caption, icon, background
     screen, background = set_window(800,600)
     bullet_image = pygame.image.load("icons\\bullet.png")
+
+    intro_image = pygame.image.load("icons\WASD.png")
 
     # Initialize player
     player = Player(playerType=1, screen=screen)
@@ -45,8 +46,35 @@ def main():
     hit3 = False
     hit4 = False
     score = 0
-    font = pygame.font.Font('RangerEastwood.ttf',32)
+    scoreX = 10
+    scoreY = 10
 
+    # Intro
+    while running:
+        for event in pygame.event.get():
+            # Window closes if the user clicks X
+            if event.type == pygame.QUIT:
+                running = False
+
+        keys = pygame.key.get_pressed()
+
+        if keys[pygame.K_RETURN]:
+            break
+
+        screen.fill((255,204,153))
+        screen.blit(background, (0,0))
+        screen.blit(intro_image, (250,50))
+        
+
+        font = pygame.font.Font('RangerEastwood.ttf',64)
+        display_intro =  font.render("Press ENTER to Start", True, (255,255,255))
+        screen.blit(display_intro, (200, 400))
+
+        pygame.display.flip()
+        dt = clock.tick(60) / 1000
+
+    font = pygame.font.Font('RangerEastwood.ttf',32)
+    # Main game
     while running:
         for event in pygame.event.get():
             # Window closes if the user clicks X
@@ -106,10 +134,28 @@ def main():
             bullet.XPos = 0
             score += 1
 
-        show_score(font, score, screen)
+        if enemy.XPos < 160 or enemy2.XPos < 160 or enemy3.XPos < 160 or enemy4.XPos < 160:
+            break
+
+        show_score(font, score, scoreX, scoreY, screen)
         pygame.display.flip()
         dt = clock.tick(60) / 1000
         time_dt += dt
+
+    # END GAME
+    while running:
+        for event in pygame.event.get():
+            # Window closes if the user clicks X
+            if event.type == pygame.QUIT:
+                running = False
+
+        screen.fill((255,204,153))
+        screen.blit(background, (0,0))
+
+        show_score(font=pygame.font.Font('RangerEastwood.ttf',128), score=score, scoreX = 200, scoreY = 200, screen=screen)
+
+        pygame.display.flip()
+        dt = clock.tick(60) / 1000
         
     pygame.quit()
 
@@ -128,9 +174,9 @@ def collision(x1, y1, x2, y2):
     else:
         return False
 
-def show_score(font, score, screen):
+def show_score(font, score, scoreX, scoreY, screen):
     display_score =  font.render("Score: " + str(score), True, (255,255,255))
-    screen.blit(display_score, (10,10))
+    screen.blit(display_score, (scoreX, scoreY))
     
 
 if __name__ == "__main__":
