@@ -21,5 +21,3 @@ class Bullet:
                 return True
         else:
             self.XPos = 0
-            
-    
