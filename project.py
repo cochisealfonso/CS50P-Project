@@ -8,6 +8,7 @@ from bullet import Bullet
 """
 TO DO:
     
+
     x Tidy up start and end game code
     x Tidy up variables
     x ETC
@@ -19,13 +20,12 @@ def main():
     pygame.init()
     pygame.font.init()
 
-    # Initialize window size, caption, icon, background
+    # Initialize window size, caption, icon, background, images
     screen, background = set_window(800,600)
     bullet_image = pygame.image.load("icons\\bullet.png")
-
     intro_image = pygame.image.load("icons\WASD.png")
 
-    # Initialize player
+    # Initialize player and bullet
     player = Player(playerType=1, screen=screen)
     bullet = Bullet(bullet_image=bullet_image, screen=screen, XPos=player.XPos, YPos=player.YPos)
 
@@ -56,16 +56,15 @@ def main():
             if event.type == pygame.QUIT:
                 running = False
 
+        # Press ENTER to start the game
         keys = pygame.key.get_pressed()
-
         if keys[pygame.K_RETURN]:
             break
-
+        
+        # Display background and instructions
         screen.fill((255,204,153))
         screen.blit(background, (0,0))
         screen.blit(intro_image, (250,50))
-        
-
         font = pygame.font.Font('RangerEastwood.ttf',64)
         display_intro =  font.render("Press ENTER to Start", True, (255,255,255))
         screen.blit(display_intro, (200, 400))
@@ -74,6 +73,8 @@ def main():
         dt = clock.tick(60) / 1000
 
     font = pygame.font.Font('RangerEastwood.ttf',32)
+
+
     # Main game
     while running:
         for event in pygame.event.get():
@@ -86,9 +87,8 @@ def main():
         screen.blit(background, (0,0))
         player.move(dt)
 
-        keys = pygame.key.get_pressed()
-
         # Bullet Mechanics
+        keys = pygame.key.get_pressed()        
         if not shoot:
             if keys[pygame.K_SPACE]:
                 bullet = Bullet(bullet_image=bullet_image, screen=screen, XPos=player.XPos, YPos=player.YPos)
@@ -149,9 +149,11 @@ def main():
             if event.type == pygame.QUIT:
                 running = False
 
+        # Display background
         screen.fill((255,204,153))
         screen.blit(background, (0,0))
 
+        # Display score
         show_score(font=pygame.font.Font('RangerEastwood.ttf',128), score=score, scoreX = 200, scoreY = 200, screen=screen)
 
         pygame.display.flip()
@@ -173,6 +175,7 @@ def collision(x1, y1, x2, y2):
         return True
     else:
         return False
+
 
 def show_score(font, score, scoreX, scoreY, screen):
     display_score =  font.render("Score: " + str(score), True, (255,255,255))
