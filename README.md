@@ -1,5 +1,5 @@
 # The Last Cowboy
-#### Video Demo:
+#### Video Demo: https://youtu.be/ZAVpwm0gQ4U
 #### Description: Game project for CS50P using Pygame
 
 <!-- PROJECT LOGO -->
@@ -14,7 +14,7 @@
   <p align="center">
     CS50P Final Project created using PyGame
     <br />
-    <a href="https://github.com/othneildrew/Best-README-Template">View Demo</a>
+    <a href="https://youtu.be/ZAVpwm0gQ4U">View Demo</a>
   </p>
 </div>
 
