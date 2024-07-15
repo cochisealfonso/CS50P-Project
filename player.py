@@ -32,6 +32,3 @@ class Player:
                 self.XPos += 300 * dt
             else:
                 self.XPos -= 350 * dt
-
-    def load_gun(self, bullet_image):
-        return Bullet(bullet_image=bullet_image, screen=self.screen, XPos=self.XPos + 45, YPos=self.YPos + 35)
