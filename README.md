@@ -6,7 +6,7 @@
 <br />
 <div align="center">
   <a href="https://github.com/cochisealfonso/project">
-    <img src="images/cowboy_icon.png" alt="Logo" width="80" height="80">
+    <img src="readme_images/cowboy_icon.png" alt="Logo" width="80" height="80">
   </a>
 
   <h3 align="center">The Last Cowboy</h3>
@@ -65,7 +65,7 @@ Use the `BLANK_README.md` to get started.
 ### Built With
 
 <a href="https://github.com/cochisealfonso/project">
-    <img src="images/cowboy_icon.png" alt="Logo" width="1561" height="438">
+    <img src="readme_images/pygame_logo.png" alt="Logo" width="1561" height="438">
 </a>
 
 Pygame is a set of Python modules designed for writing games. It is written on top of the excellent SDL library. This allows you to create fully featured games and multimedia programs in the python language. Pygame is highly portable and runs on nearly every platform and operating system.
@@ -155,4 +155,4 @@ Special thanks to all the resources that made this project possible.
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
-[product-screenshot]: images/game_screenshots.png
+[product-screenshot]: readme_images/game_screenshot.png
