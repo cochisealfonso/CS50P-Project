@@ -13,6 +13,3 @@ class Enemy:
         if bool:
             self.screen.blit(self.playertype, (self.XPos, self.YPos))
             self.XPos -= 100 * dt
-            if self.XPos < 150:
-                self.XPos = 800 
-                self.YPos = random.randint(30, 570)
