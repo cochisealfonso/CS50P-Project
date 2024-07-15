@@ -46,39 +46,76 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-[![Game Screen Shot][product-screenshot]]
+![Game Screen Shot][product-screenshot]
 
-There are many great README templates available on GitHub; however, I didn't find one that really suited my needs so I created this enhanced one. I want to create a README template so amazing that it'll be the last one you ever need -- I think this is it.
+This is a final project submission for Harvard's CS50P: Introduction to Programming with Python. It is a simple Space Invader-like game, but with a different orientation (horizontal), with the enemies approaching from right to left.
 
-Here's why:
-* Your time should be focused on creating something amazing. A project that solves a problem and helps others
-* You shouldn't be doing the same tasks over and over like creating a README from scratch
-* You should implement DRY principles to the rest of your life :smile:
+The game is implemented using Pygame.
 
-Of course, no one template will serve all projects since your needs may be different. So I'll be adding more in the near future. You may also suggest changes by forking this repo and creating a pull request or opening an issue. Thanks to all the people have contributed to expanding this template!
+### Source Files
 
-Use the `BLANK_README.md` to get started.
+There are three (3) classes made for this game, `bullet.py`, `enemy.py`, and `player.py`. Each of these classes has its own `XPos` and `YPos` component, which is their position on the screen.
+
+<br />
+
+`~\bullet.py`
+
+The bullet class contains the `fire()` function. This is the function that determines whether the bullet should start to move from the current position of the player all the way to the right-end of the screen.
+
+<br />
+
+`~\enemy.py`
+
+The enemy class contains the `spawn()` function. This randomly spawns the enemies at a random `YPos` or Y-axis. All of the enemies are determined to be spawned at a fixed `XPos`.
+
+<br />
+
+`~\player.py`
+
+The enemy class contains the `move()` function. This determines the keys that moves the player's character and the speed of its movement. This also determines the boundaries where the character is allowed to move.
+
+<br />
+
+`~\project.py`
+
+This is the main file of the game. This contains the `main()`, `set_window()`, `collision()`, and the  `show_score()` functions.
+
+`set_window()` - This sets the size, caption, icon, and background image to be displayed in the window.
+
+`collision()` - This computes the distance of the position of the bullet and the position of the enemy. When the distance reaches a certain value, it returns a boolean value, indicating that a collision has occurred.
+
+`show_score()` - This function simply displays the current score of the player.
+
+The `main()` function is where all of these are initialized and executed. It starts with initializing __Pygame__. We then initialize the screen and window that will be displayed followed by all the images needed.
+
+The function then instatiates the `player`, `bullet`, and four (4) `enemies`.
+
+All of the needed variables are then named and assigned initial values.
+
+The succeeding code are separated by three while loops using the `running` variable. These screens are the Intro, Main Game, and the End Game screen.
+
+The __Intro__ displays the instructions on how to control the character and how to fire a bullet.
+
+After hitting the ENTER key, the game starts and the __Main Game__ screen is displayed.
+
+The __End Game__ screen only triggers when the game ends, that is, when an enemy reaches the rope. It will then display the score of the player and the game can be closed from there.
+
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
 ### Built With
 
-<a href="https://github.com/cochisealfonso/project">
-    <img src="readme_images/pygame_logo.png" alt="Logo" width="1561" height="438">
-</a>
+![Pygame Logo][pygame-logo]
 
-Pygame is a set of Python modules designed for writing games. It is written on top of the excellent SDL library. This allows you to create fully featured games and multimedia programs in the python language. Pygame is highly portable and runs on nearly every platform and operating system.
+__Pygame__ is a set of Python modules designed for writing games. It is written on top of the excellent SDL library. This allows you to create fully featured games and multimedia programs in the python language. Pygame is highly portable and runs on nearly every platform and operating system.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
-
 
 
 <!-- GETTING STARTED -->
 ## Getting Started
 
-This is an example of how you may give instructions on setting up your project locally.
-To get a local copy up and running follow these simple example steps.
 
 ### Prerequisites
 
@@ -156,3 +193,4 @@ Special thanks to all the resources that made this project possible.
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
 [product-screenshot]: readme_images/game_screenshot.png
+[pygame-logo]: readme_images/pygame_logo.png
