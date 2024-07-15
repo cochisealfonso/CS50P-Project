@@ -5,16 +5,6 @@ from player import Player
 from enemy import Enemy
 from bullet import Bullet
 
-"""
-TO DO:
-    
-
-    x Tidy up start and end game code
-    x Tidy up variables
-    x ETC
-
-"""
-
 def main():
     # Initialize Pygame and display
     pygame.init()
@@ -142,7 +132,7 @@ def main():
         dt = clock.tick(60) / 1000
         time_dt += dt
 
-    # END GAME
+    # End Game
     while running:
         for event in pygame.event.get():
             # Window closes if the user clicks X
